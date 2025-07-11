@@ -1,0 +1,346 @@
+:root {
+    --pri: #F8F4E1;
+    --sec: #4E1F00;
+    --tri1: #E5B299;
+    --tri2: #B4846C;
+}
+
+@font-face {
+    font-family: aeonik;
+    font-weight: 300;
+    src: url(./AeonikTRIAL-Light.otf)
+}
+
+@font-face {
+    font-family: aeonik;
+    font-weight: 500;
+    src: url(./AeonikTRIAL-Regular.otf)
+}
+
+@font-face {
+    font-family: aeonik;
+    font-weight: 700;
+    src: url(./AeonikTRIAL-Bold.otf)
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: aeonik;
+    color: white;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #4E1F00;
+}
+
+#main {
+    height: 100%;
+    width: 100%;
+    background-color: var(--sec);
+    padding-bottom: 10px;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    height: 70px;
+    background-color: var(--tri2);
+    z-index: 1;
+}
+
+section.allElems {
+    height: 100%;
+    width: 100%;
+    padding-top: 40px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+    justify-content: space-evenly;
+    position: absolute;
+    overflow: auto;
+}
+
+.elem {
+    background-color: #FEBA17;
+    overflow: hidden;
+    border-radius: 10px;
+    height: 400px;
+    width: 300px;
+    font-size: 20px;
+    position: relative;
+    transition: all ease 0.2s;
+}
+
+.elem:hover {
+    cursor: pointer;
+}
+
+.elem img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.elem h1 {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+.elem:active {
+    scale: 0.97;
+}
+
+.fullElem {
+    height: 100%;
+    width: 100%;
+    background-color: #381c0a;
+    padding: 20px;
+    display: none;
+    position: absolute;
+}
+
+.back {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+    background-color: red;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 20px;
+    font-weight: 700;
+    border: none;
+    transition: all ease 0.2s;
+}
+
+.back:active {
+    scale: 0.95
+}
+
+.back:hover {
+    cursor: pointer
+}
+
+.todo-list-fullPage {
+    display: none;
+    overflow: auto;
+}
+
+.todo-list-fullPage h2 {
+    font-size: 65px;
+}
+
+.todo-list-fullPage .todo-container {
+    height: 80%;
+    width: 100%;
+    margin-top: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.todo-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.todo-list-fullPage .todo-container .addTask {
+    width: 35%;
+    background-color: #684728;
+    height: 100%;
+    border-radius: 18px;
+}
+
+.todo-list-fullPage .todo-container .allTask {
+    width: 60%;
+    height: 100%;
+    background-color: #684728;
+    border-radius: 18px;
+}
+
+.todo-list-fullPage .todo-container .addTask form {
+    border-radius: 18px;
+    width: 100%;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.todo-list-fullPage .todo-container .addTask form input#task-input,
+textarea,
+form button {
+    font-weight: 700;
+    outline: none;
+    width: 100%;
+    border-radius: 12px;
+    border: none;
+    padding: 10px 15px;
+    color: var(--pri);
+}
+
+.todo-list-fullPage .todo-container .addTask form input,
+textarea {
+    background-color: #381c0a;
+    resize: none;
+    border: 1px solid rgba(255, 255, 255, 0.258);
+}
+
+.todo-list-fullPage .todo-container .addTask form button {
+    background-color: #a97d17
+}
+
+.todo-list-fullPage .todo-container .addTask form button:hover {
+    cursor: pointer;
+}
+
+.todo-list-fullPage .todo-container .addTask form button:active {
+    scale: 0.98
+}
+
+.todo-list-fullPage .todo-container .allTask {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: auto;
+    border: 1px solid rgba(255, 255, 255, 0.258);
+}
+
+.todo-list-fullPage .todo-container .allTask .task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
+    background-color: #381c0a;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.258);
+}
+
+.task h3 span {
+    background-color: red;
+    color: var(--pri);
+    border-radius: 50px;
+    padding: 4px 6px;
+    font-size: 8px;
+    margin-left: 10px;
+}
+.task h3 span.true{
+    opacity:1
+}
+.task h3 span.false{
+    opacity:0
+}
+.task h3 {
+    display: flex;
+    align-items: flex-start;
+}
+
+.todo-list-fullPage .todo-container .allTask .task .text {
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    overflow: auto;
+}
+
+.todo-list-fullPage .todo-container .allTask .task button {
+    background-color: #a97d17;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.todo-list-fullPage .todo-container .allTask .task button:hover {
+    cursor: pointer;
+}
+
+.todo-list-fullPage .todo-container .allTask .task button:active {
+    scale: 0.98;
+}
+
+/* Scrollbar for modern browsers */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #3d1f0f;
+    /* Darker brown background */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #caa345;
+    /* Golden thumb */
+    border-radius: 10px;
+    border: 2px solid #3d1f0f;
+    /* Optional border for spacing effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #e6c066;
+    /* Lighter gold on hover */
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #caa345 #3d1f0f;
+}
+
+.importantCheckBox {
+    display: flex;
+    width: 100%;
+    gap: 5%;
+    justify-content: flex-start;
+    padding: 10px 0px;
+    padding-left: 8px;
+}
+
+.importantCheckBox input {
+    scale: 2;
+}
+
+@media (max-width:480px) {
+    .back {
+        top: 1%;
+        padding: 10px 15px;
+    }
+
+    .todo-list-fullPage h2 {
+        font-size: 20px;
+    }
+
+    .todo-container {
+        flex-direction: column;
+        gap: 12px
+    }
+
+    .todo-list-fullPage .todo-container {
+        height: 100%
+    }
+
+    .todo-list-fullPage .todo-container .addTask {
+        width: 100%;
+        height: 150%
+    }
+
+    .todo-list-fullPage .todo-container .allTask {
+        width: 100%;
+    }
+
+
+}
