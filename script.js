@@ -118,3 +118,40 @@ function toDoList() {
 }
 
 toDoList()
+
+function dalilyPlanner(){
+    var dayPlanData = JSON.parse(localStorage.getItem('dayPlanData')) || {}
+
+var dayPlanner = document.querySelector('.day-planner');
+
+var hours = Array.from({ length: 18 }, function (elem, idx) {
+    return `${6 + idx}:00 - ${7 + idx}:00`
+})
+
+var wholeDaySum = ''
+
+hours.forEach((elem, idx) => {
+    var savedData = dayPlanData[idx] || ''
+    wholeDaySum += `<div class="day-planner-time">
+                        <p>${elem}</p>
+                        <input id=${idx} type="text" placeholder="..." value="${savedData}">
+                    </div>`
+})
+
+// Set the inputs into DOM first
+dayPlanner.innerHTML = wholeDaySum;
+
+// Now query them AFTER they exist
+var dayPlannerInput = document.querySelectorAll('.day-planner input');
+
+// Now attach event listeners
+dayPlannerInput.forEach((elem) => {
+    elem.addEventListener('input', () => {
+        dayPlanData[elem.id] = elem.value
+        localStorage.setItem('dayPlanData', JSON.stringify(dayPlanData))
+    })
+})
+
+}
+
+dalilyPlanner()
