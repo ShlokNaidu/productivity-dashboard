@@ -331,12 +331,12 @@ textarea {
     margin-top: 40px;
     width: 100%;
     border-radius: 12px;
-    border:5px solid var(--pri);
+    border: 5px solid var(--pri);
     padding: 20px;
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap:2%;
+    gap: 2%;
     overflow: auto;
 }
 
@@ -364,9 +364,78 @@ textarea {
     left: 1%;
 }
 
+.motivation-fullPage .motivation-container {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 40px 20px;
+    border-radius: 30px;
+    background-color: transparent; /* no base background */
+    overflow: visible;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Glowing background layer */
+.motivation-fullPage .motivation-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--tri1); /* or a specific bright color */
+    filter: blur(100px);
+    border-radius: 40px;
+    z-index: 0;
+    opacity: 0.8;
+}
+
+/* Actual visible box */
+.motivation-wrapper {
+    position: relative;
+    z-index: 2;
+    background: var(--tri1); /* same as the blur layer */
+    padding: 30px 25px;
+    border-radius: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1); /* optional extra glow */
+}
+
+.motivation-3{
+    align-self:flex-end;
+}
+
+.motivation-1 {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 999px;
+    color: white;
+    font-weight: bold;
+}
+
+.motivation-2 h1 {
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+}
+
+.motivation-3 h1 {
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    text-align:right;
+    width: 100%;
+}
+
+
 @media (max-width: 480px) {
     .back {
-        top: 1%;
+        top: 3%;
         padding: 10px 15px;
     }
 
@@ -403,7 +472,20 @@ textarea {
     .day-planner .day-planner-time p {
         top: 5%;
     }
-    .dailyPlanner-fullPage .day-planner .day-planner-time{
+
+    .dailyPlanner-fullPage .day-planner .day-planner-time {
         width: 100%;
+    }
+
+    .motivation-fullPage .motivation-container {
+        height: 60%;
+        width: 95%;
+    }
+
+    .motivation-2 h1 {
+        font-size: 25px;
+    }
+    .motivation-3 h1 {
+        font-size: 20px;
     }
 }
