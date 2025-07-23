@@ -5,13 +5,16 @@ function openFeatures() {
 
     var allFullElemsBackBtn = document.querySelectorAll('.fullElem .back') //sare back buttons jo individual cards ke andar h
 
+    var header=document.querySelector('.header')
     //sare card click one par unka perticular page open karna
     allElems.forEach((elem) => {
         elem.addEventListener('click', () => {
             fullElemPage[elem.id].style.display = 'block' //jis bhi card par click hoga uska display none se block ho jayega
+            header.style.display='none'
 
             allElems.forEach(elem => {
                 elem.style.display = 'none'   //jab koi card open hoga to home page ke elements hide ho jayenge
+                
             })
         })
     })
@@ -19,7 +22,7 @@ function openFeatures() {
     allFullElemsBackBtn.forEach((back) => {
         back.addEventListener('click', () => {
             fullElemPage[back.id].style.display = 'none' //jo card open tha uska display none
-
+            header.style.display='block'
             allElems.forEach(elem => {
                 elem.style.display = 'block'  //jab close button pe click hoga to sare home page ke sare elements firse visible ho jayenge (done for mobile view)
             })
@@ -156,7 +159,7 @@ function dalilyPlanner() {
 
 dalilyPlanner()
 
-function motivationalQuote(){
+function motivationalQuote() {
     let allFullElemsBackBtn = document.querySelectorAll('.fullElem .back')
     let motivationQuote = document.querySelector('.motivation-2 h1')
     let motivationauthor = document.querySelector('.motivation-3 h1')
@@ -167,13 +170,95 @@ function motivationalQuote(){
         motivationauthor.innerHTML = `~${data.author}`
     }
 
-fetchQuote()
-allFullElemsBackBtn[2].addEventListener('click',function(){
     fetchQuote()
-})
+    allFullElemsBackBtn[2].addEventListener('click', function () {
+        fetchQuote()
+    })
 }
 
 motivationalQuote()
 
+function pomodoroTimer() {
+
+    let timer = document.querySelector('.pomo-timer h2')
+    let startBtn = document.querySelector('.start-timer')
+    let pauseBtn = document.querySelector('.pause-timer')
+    let resetBtn = document.querySelector('.reset-timer')
+    let session = document.querySelector('.session-type')
+    var isWorkSession = true
+
+    let totalSeconds = 25 * 60;
+    let timerInterval = null;
+    function updateTimer() {
+        let minutes = Math.floor(totalSeconds / 60);
+        let seconds = totalSeconds % 60;
+        timer.innerHTML = `${minutes} : ${seconds < 10 ? '0' + seconds : seconds}`
+    }
+
+    function startTimer() {
+        clearInterval(timerInterval)
+
+        if (isWorkSession) {
+            session.innerHTML = "Time to Study"
+            timerInterval = setInterval(() => {
+                if (totalSeconds > 0) {
+                    totalSeconds--;
+                    updateTimer();
+                    startBtn.disabled = true;
+                } else {
+                    isWorkSession = false
+                    clearInterval(timerInterval)
+                    startBtn.disabled = false;
+                    startBtn.innerHTML="Rest"
+                    totalSeconds = 5 * 60
+                    session.innerHTML = "Time to Rest! , press 'Rest' to start the rest timer"
+                    updateTimer();
+                }
+            }, 1000)
+
+        }
+
+        else {
+            timerInterval = setInterval(() => {
+                if (totalSeconds > 0) {
+                    totalSeconds--;
+                    updateTimer();
+                    startBtn.disabled = true;
+                } else {
+                    startBtn.innerHTML="Start"
+                    session.innerHTML = "Rest time over! Press 'Start' to start Study timer"
+                    isWorkSession = true
+                    totalSeconds = 25 * 60;
+                    updateTimer();
+                    clearInterval(timerInterval)
+                    startBtn.disabled = false;
+                }
+            }, 1000)
+
+        }
 
 
+    }
+
+
+    function pauseTimer() {
+        clearInterval(timerInterval)
+        startBtn.disabled = false;
+    }
+    function resetTimer() {
+        clearInterval(timerInterval)
+        if (isWorkSession) {
+            totalSeconds = 25 * 60
+        }
+        else {
+            totalSeconds = 5 * 60
+        }
+        startBtn.disabled = false;
+        updateTimer();
+    }
+    startBtn.addEventListener('click', startTimer)
+    pauseBtn.addEventListener('click', pauseTimer)
+    resetBtn.addEventListener('click', resetTimer)
+}
+
+pomodoroTimer();

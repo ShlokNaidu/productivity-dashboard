@@ -39,7 +39,8 @@ html,
 body {
     height: 100%;
     width: 100%;
-    background-color: #4e1f00;
+    background-color: var(--sec);
+
 }
 
 #main {
@@ -55,6 +56,12 @@ nav {
     height: 70px;
     background-color: var(--tri2);
     z-index: 1;
+}
+.header{
+    height:10%;
+    background-color: var(--tri2);
+    width: 100%;
+    display: block;
 }
 
 section.allElems {
@@ -431,7 +438,56 @@ textarea {
     text-align:right;
     width: 100%;
 }
+.pomodoro-fullPage{
+    position: relative;
+    width: 100%;
+}
+.pomodoro-fullPage h1{
+    font-size: 70px;
+    font-weight: 500;
 
+}
+
+.pomodoro-fullPage .pomo-timer{
+    width: 100%;
+    position: absolute;
+    left:50%;
+    top:45%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.pomo-timer h2{
+    font-size: 140px;
+    font-weight: 500;
+}
+.pomo-timer button{
+    background-color: var(--tri2);
+    padding:32px 37px;
+    border: none;
+    border-radius: 10px;
+    transition:all ease 0.2s;
+    font-size: 30px;
+    font-weight: 700;
+    box-shadow: 3px 3px 0px black;
+}
+.pomo-timer button:active{
+    scale: 0.95;
+    box-shadow: 0px 0px 0px black;
+}
+.pomo-timer button:hover{
+    cursor: pointer;
+}
+.buttons{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:20px;
+    padding: 15px;
+}
+.buttons button{
+        width:200px;
+    }
 
 @media (max-width: 480px) {
     .back {
@@ -487,5 +543,18 @@ textarea {
     }
     .motivation-3 h1 {
         font-size: 20px;
+    }
+    .pomodoro-fullPage h1{
+    font-size: 35px;
+    }
+    .pomo-timer h2{
+    font-size:80px;
+    }
+    .pomo-timer button{
+    padding:22px 27px;
+    font-size: 20px;
+    }
+    .buttons{
+        flex-direction: column;
     }
 }
